@@ -4,6 +4,16 @@ A robust and scalable relational database system for managing event tickets, ven
 
 ---
 
+## 📖 Table of Contents
+- [🚀 Overview](#-overview)
+- [✨ Key Features](#-key-features)
+- [📊 Database Schema](#-database-schema)
+- [🛠️ Technical Implementation](#-technical-implementation)
+- [🚦 Getting Started](#-getting-started)
+- [🔮 Future Roadmap](#-future-roadmap)
+
+---
+
 ## 🚀 Overview
 
 The **Ticket Booking System** is designed to handle the full lifecycle of an event booking process. From managing diverse events (Movies, Concerts, Sports) to seat allocation across various venues, the system ensures data integrity and high performance through advanced database features.
@@ -39,12 +49,16 @@ erDiagram
 ## 🛠️ Technical Implementation
 
 ### 1. Relational Tables
-- **`USERS`**: Manages customer profiles and authentication data.
-- **`EVENT`**: Catalogs different types of events (Movie, Concert, Standup, etc.).
-- **`VENUES`**: Details of locations and their capacities.
-- **`SHOWS`**: Links events to venues with specific timing and pricing.
-- **`SEATS`**: Categorized seating (Platinum, Gold, Silver) linked to venues.
-- **`BOOKINGS` & `TICKETS`**: Tracks transactions and specific seat assignments.
+| Entity | Description | Key Attributes |
+| :--- | :--- | :--- |
+| **`USERS`** | Customer profiles and auth. | `user_id`, `email`, `password_hash` |
+| **`EVENT`** | Event catalog (Movies, etc.) | `event_id`, `event_type`, `duration` |
+| **`VENUES`** | Locations and capacity. | `venue_id`, `total_capacity` |
+| **`SHOWS`** | Event schedules and pricing. | `show_id`, `start_time`, `base_price` |
+| **`SEATS`** | Categorized seating per venue. | `seat_id`, `category`, `seat_number` |
+| **`BOOKINGS`** | Transaction records. | `booking_id`, `total_amount`, `status` |
+| **`TICKETS`** | Specific seat assignments. | `ticket_id`, `actual_price` |
+| **`AUDIT_LOGS`** | System change tracking. | `audit_id`, `action`, `details` |
 
 ### 2. Business Logic (PL/SQL)
 - **`fn_is_seat_available`**: A deterministic function to ensure no double-bookings.
